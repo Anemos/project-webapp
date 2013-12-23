@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="phonecatApp">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.1.min.css"/>
+        <script type="text/javascript" src="lib/jquery/jquery.js"></script>
+        <script type="text/javascript" src="lib/jquery/jquery.mobile-1.2.1.min.js"></script>
+        <script type="text/javascript" src="lib/angular/angular.js"></script>
+        <script type="text/javascript" src="lib/angular/angular-route.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <title>Hello World</title>
+        <script type="text/javascript" charset="utf-8">
+			    //*********************************************************
+			    // Wait for Cordova to Load
+			    //*********************************************************
+			    document.addEventListener("deviceready", onDeviceReady, false);
+			    
+			    function onDeviceReady() {
+            document.addEventListener("backbutton", onBackKeyDown, false);
+			    }
+          
+          function onBackKeyDown(e) {
+            if ( $('.ui-page-active').attr('id') == 'main') {
+                e.preventDefault();
+                exitAppPopup();
+            } else {
+                history.back();
+            }
+          }
+          
+          function exitAppPopup() {
+            navigator.notification.confirm(
+              'Exit PhoneGap ' + device.cordova + ' Demo?'
+              , function(button) {
+                  if (button == 2) {
+                      navigator.app.exitApp();
+                  } 
+              }
+              , 'Exit'
+              , 'No,Yes'
+            );  
+            history.back();
+          }
+		    </script>
+    </head>
+  <body ng-controller="AppCtrl">
+  <div id="main" data-role="page" class='ui-page-active'>
+    <div data-role="header" data-position="fixed" class="ui-header ui-bar-a ui-header-fixed" role="banner">  
+				<a ng-click="$back()" data-icon="arrow-l" class="ui-btn-left ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left" 
+					data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a">
+					<span class="ui-btn-inner ui-btn-corner-all">
+						<span class="ui-btn-text">Back</span>
+						<span class="ui-icon ui-icon-arrow-l ui-icon-shadow"> </span>
+					</span>
+				</a>
+				<h1>PhoneGap Demo</h1>
+				<a ng-click="/phones" data-icon="home" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left" 
+					data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a">
+					<span class="ui-btn-inner ui-btn-corner-all">
+						<span class="ui-btn-text">Home</span>
+						<span class="ui-icon ui-icon-home ui-icon-shadow"> </span>
+					</span>
+				</a>
+		</div>
+		
+		<div data-role="content">
+      <div ng-view></div>
+    </div>
+    
+    <div data-role="footer" class="ui-footer ui-bar-a slideup" role="contentinfo">
+			  <div data-role="navbar" class="ui-navbar" role="navigation">
+					<ul>
+					<li class="ui-block-a">
+  						<a href="#" data-icon="info" data-corners="false" 
+  						  data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true">
+    					  <span class="ui-btn-inner">
+      							<span class="ui-btn-text">One</span>
+      							<span class="ui-icon ui-icon-info ui-icon-shadow"> </span>
+    						</span></a></li>
+					<li class="ui-block-b">
+  						<a href="#" data-icon="check" class="ui-btn-active ui-btn ui-btn-up-a ui-btn-inline ui-btn-icon-top" data-corners="false" 
+    						data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true">
+    						<span class="ui-btn-inner">
+      							<span class="ui-btn-text">Two</span>
+      							<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>
+    						</span></a></li>
+					<li class="ui-block-c">
+  						<a href="#" data-icon="star" data-corners="false" data-shadow="false" data-iconshadow="true" 
+    						data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-up-a ui-btn-inline ui-btn-icon-top">
+    						<span class="ui-btn-inner"><span class="ui-btn-text">Three</span>
+      							<span class="ui-icon ui-icon-star ui-icon-shadow"> </span>
+    						</span></a></li>
+					</ul>
+		    </div>
+		  </div>
+  </div>
+	</body>
+</html>
