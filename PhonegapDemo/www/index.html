@@ -19,39 +19,39 @@
 			    // Wait for Cordova to Load
 			    //*********************************************************
 			    document.addEventListener("deviceready", onDeviceReady, false);
-			    
-			    function onDeviceReady() {
-            document.addEventListener("backbutton", onBackKeyDown, false);
+				
+				function onDeviceReady() {
+            		document.addEventListener("backbutton", onBackKeyDown, false);
 			    }
           
-          function onBackKeyDown(e) {
-            if ( $('.ui-page-active').attr('id') == 'main') {
-                e.preventDefault();
-                exitAppPopup();
-            } else {
-                history.back();
-            }
-          }
+          		function onBackKeyDown(e) {
+            		if ( $('.ui-page-active').attr('id') == 'main') {
+               			 e.preventDefault();
+                		 exitAppPopup();
+            		} else {
+                		window.history.back();
+            		}
+          		}
           
-          function exitAppPopup() {
-            navigator.notification.confirm(
-              'Exit PhoneGap ' + device.cordova + ' Demo?'
-              , function(button) {
-                  if (button == 2) {
-                      navigator.app.exitApp();
-                  } 
-              }
-              , 'Exit'
-              , 'No,Yes'
-            );  
-            history.back();
-          }
-		    </script>
+          		function exitAppPopup() {
+           			 navigator.notification.confirm(
+              			'Exit PhoneGap ' + device.cordova + ' Demo?'
+              			, function(button) {
+                 			 if (button == 2) {
+                     			 navigator.app.exitApp();
+                  			} 
+              			}
+              			, 'Exit'
+              			, 'No, Yes'
+           			 );  
+            		window.history.back();
+          		}
+		</script>
     </head>
-  <body ng-controller="AppCtrl">
-  <div id="main" data-role="page" class='ui-page-active'>
-    <div data-role="header" data-position="fixed" class="ui-header ui-bar-a ui-header-fixed" role="banner">  
-				<a ng-click="$back()" data-icon="arrow-l" class="ui-btn-left ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left" 
+ <body ng-controller="AppCtrl">
+ <div id="main" data-role="page" class='ui-page-active'>
+    	<div data-role="header" data-position="fixed" class="ui-header ui-bar-a ui-header-fixed" role="banner">  
+				<a href="$back()" data-icon="arrow-l" class="ui-btn-left ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left" 
 					data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a">
 					<span class="ui-btn-inner ui-btn-corner-all">
 						<span class="ui-btn-text">Back</span>
@@ -59,16 +59,16 @@
 					</span>
 				</a>
 				<h1>PhoneGap Demo</h1>
-				<a ng-click="/phones" data-icon="home" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left" 
+				<a ng-click="#/phones" data-icon="home" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left" 
 					data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a">
 					<span class="ui-btn-inner ui-btn-corner-all">
 						<span class="ui-btn-text">Home</span>
 						<span class="ui-icon ui-icon-home ui-icon-shadow"> </span>
 					</span>
 				</a>
-		</div>
+	</div>
 		
-		<div data-role="content">
+	<div data-role="content">
       <div ng-view></div>
     </div>
     
@@ -97,7 +97,7 @@
     						</span></a></li>
 					</ul>
 		    </div>
-		  </div>
-  </div>
-	</body>
+		</div>
+	</div>
+</body>
 </html>
